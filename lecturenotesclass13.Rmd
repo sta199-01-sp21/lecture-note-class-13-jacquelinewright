@@ -149,6 +149,10 @@ were to take another random sample of 50 students, how many would you expect
 to be left handed? Would you be surprised if only 3 of them were left handed? 
 Would you be surprised if 40 of them were left handed?
 
+I wouldnt be surprised if there was only 3 people that were
+left handed but would be very surprised if there were 40 because 
+that is a much higher percentage.
+
 ## Quantifying the variability of a sample statistic
 
 We can quantify the variability of sample statistics using
