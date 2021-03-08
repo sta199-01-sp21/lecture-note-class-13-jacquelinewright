@@ -379,7 +379,7 @@ ci_mice_died
 ```
 
 What does this mean?
-we are 95% confident that the true proportion of mice that died while not on treatment iis between 69 and 79.3 %
+we are 95% confident that the true proportion of mice that died while not on treatment is between 69 and 79.3 %
 
 **Interpretation**:
 
@@ -390,25 +390,36 @@ visualise(boot_prop) +
 
 #### Practice
 
-Consider the mice radiation results. Suppose we want to compute a 90% confidence interval for the proportion of mice that lived while on the treatment, regardless of the dose.
+Consider the mice radiation results. Suppose we want to compute a 90% 
+confidence interval for the proportion of mice that lived while on the 
+treatment, regardless of the dose.
 
 ```{r practice_2_bootstrap}
-
+boot_prop_practice <- mice %>% 
+  filter(treat == 1) %>% 
+  mutate(died = if_else(died == 1, "yes", "no")) %>% 
+  specify(response = died, success = "no") %>% 
+  generate(reps = 10000, type = "bootstrap") %>% 
+  calculate(stat = "prop")
 ```
 
 ```{r practice_2_ci}
-
+ci_mice_lived <- get_ci(boot_prop_practice, level = .90)
+ci_mice_lived
 ```
 
 Visualizing our Resuts:
 
 ```{r practice_2_visualize}
-
+visualise(boot_prop_practice) +
+  shade_ci(ci_mice_lived)
 ```
 
 
 Give an interpretation of your result.
 
+From the results we can be 90% sure that the proportion of the mice that lived 
+while on the treatment is between 55 and 65%.
 
 # References
 
